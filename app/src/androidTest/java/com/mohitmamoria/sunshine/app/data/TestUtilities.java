@@ -24,7 +24,7 @@ public class TestUtilities extends AndroidTestCase {
     public static final String TEST_LOCATION = "99705";
     public static final long TEST_DATE = 1419033600L;  // December 20th, 2014
 
-    static void validateCursor(String error, Cursor valueCursor, ContentValues expectedValues) {
+    public static void validateCursor(String error, Cursor valueCursor, ContentValues expectedValues) {
         assertTrue("Empty cursor returned. " + error, valueCursor.moveToFirst());
         validateCurrentRecord(error, valueCursor, expectedValues);
         valueCursor.close();
@@ -46,7 +46,7 @@ public class TestUtilities extends AndroidTestCase {
     /*
         Students: Use this to create some default weather values for your database tests.
      */
-    static ContentValues createWeatherValues(long locationRowId) {
+    public static ContentValues createWeatherValues(long locationRowId) {
         ContentValues weatherValues = new ContentValues();
         weatherValues.put(WeatherContract.WeatherEntry.COLUMN_LOC_KEY, locationRowId);
         weatherValues.put(WeatherContract.WeatherEntry.COLUMN_DATE, TEST_DATE);
@@ -66,7 +66,7 @@ public class TestUtilities extends AndroidTestCase {
         Students: You can uncomment this helper function once you have finished creating the
         LocationEntry part of the WeatherContract.
      */
-    static ContentValues createNorthPoleLocationValues() {
+    public static ContentValues createNorthPoleLocationValues() {
         // Create a new map of values, where column names are the keys
         ContentValues testValues = new ContentValues();
         testValues.put(WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING, TEST_LOCATION);
@@ -81,7 +81,7 @@ public class TestUtilities extends AndroidTestCase {
         Students: You can uncomment this function once you have finished creating the
         LocationEntry part of the WeatherContract as well as the WeatherDbHelper.
      */
-    static long insertNorthPoleLocationValues(Context context) {
+    public static long insertNorthPoleLocationValues(Context context) {
         // insert our test records into the database
         WeatherDbHelper dbHelper = new WeatherDbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();

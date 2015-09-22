@@ -17,6 +17,7 @@ package com.mohitmamoria.sunshine.app.data;
 
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -39,9 +40,11 @@ public class WeatherProvider extends ContentProvider {
     static final int LOCATION = 300;
 
     private static final SQLiteQueryBuilder sWeatherByLocationSettingQueryBuilder;
+    private static final SQLiteQueryBuilder sLocationByLocationSettingQueryBuilder;
 
     static{
         sWeatherByLocationSettingQueryBuilder = new SQLiteQueryBuilder();
+        sLocationByLocationSettingQueryBuilder = new SQLiteQueryBuilder();
         
         //This is an inner join which looks like
         //weather INNER JOIN location ON weather.location_id = location._id
@@ -190,12 +193,28 @@ public class WeatherProvider extends ContentProvider {
             }
             // "weather"
             case WEATHER: {
-                retCursor = null;
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        WeatherContract.WeatherEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
                 break;
             }
             // "location"
             case LOCATION: {
-                retCursor = null;
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        WeatherContract.LocationEntry.TABLE_NAME,
+                        projection,
+                        selection,
+                        selectionArgs,
+                        null,
+                        null,
+                        sortOrder
+                );
                 break;
             }
 
