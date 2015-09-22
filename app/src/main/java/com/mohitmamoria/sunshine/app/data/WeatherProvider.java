@@ -120,14 +120,15 @@ public class WeatherProvider extends ContentProvider {
     static UriMatcher buildUriMatcher() {
         // 1) The code passed into the constructor represents the code to return for the root
         // URI.  It's common to use NO_MATCH as the code for this case. Add the constructor below.
-        UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        final String authority = WeatherContract.CONTENT_AUTHORITY;
 
         // 2) Use the addURI function to match each of the types.  Use the constants from
         // WeatherContract to help define the types to the UriMatcher.
-        uriMatcher.addURI("com.mohitmamoria.sunshine.app", "weather", WEATHER);
-        uriMatcher.addURI("com.mohitmamoria.sunshine.app", "weather/*", WEATHER_WITH_LOCATION);
-        uriMatcher.addURI("com.mohitmamoria.sunshine.app", "weather/*/#", WEATHER_WITH_LOCATION_AND_DATE);
-        uriMatcher.addURI("com.mohitmamoria.sunshine.app", "location", LOCATION);
+        uriMatcher.addURI(authority, "weather", WEATHER);
+        uriMatcher.addURI(authority, "weather/*", WEATHER_WITH_LOCATION);
+        uriMatcher.addURI(authority, "weather/*/#", WEATHER_WITH_LOCATION_AND_DATE);
+        uriMatcher.addURI(authority, "location", LOCATION);
 
         // 3) Return the new matcher!
         return uriMatcher;
