@@ -20,8 +20,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 
-import com.example.android.sunshine.app.data.WeatherContract.LocationEntry;
-import com.example.android.sunshine.app.data.WeatherContract.WeatherEntry;
+import com.mohitmamoria.sunshine.app.data.TestUtilities;
+import com.mohitmamoria.sunshine.app.data.WeatherContract;
+import com.mohitmamoria.sunshine.app.data.WeatherContract.LocationEntry;
+import com.mohitmamoria.sunshine.app.data.WeatherContract.WeatherEntry;
+import com.mohitmamoria.sunshine.app.data.WeatherDbHelper;
 
 /*
     Note: This is not a complete set of tests of the Sunshine ContentProvider, but it does test
